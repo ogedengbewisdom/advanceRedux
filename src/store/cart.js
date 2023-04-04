@@ -2,7 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit"
 
 
 const cartInitialState = {
-    showCart: false, cartItem: []
+    showCart: false, cartItem: [], totalQuantity: 0
 }
 
 const cartSlice = createSlice({
@@ -13,7 +13,25 @@ const cartSlice = createSlice({
             state.showCart = !state.showCart
         },
         addToCart (state, action) {
-            state.cartItem = state.cartItem.concat(action.payload)
+            const existingCartIndex = state.cartItem.findIndex(data => data.id === action.payload.id )
+            const existingCart = state.cartItem[existingCartIndex]
+
+            let updatedCarts;
+            
+            if (existingCart) {
+                const updatedCart = {
+                    ...existingCart,
+                    quantity: existingCart.quantity + action.quantity
+                } 
+
+                updatedCarts = [...state.cartItem]
+                updatedCarts[existingCartIndex] = updatedCart
+            }
+            else {
+                updatedCarts = state.cartItem.concat(action.payload)
+            }
+
+            state.cartItem = updatedCarts
         }
     }
 })
