@@ -1,7 +1,7 @@
 import classes from './CartItem.module.css';
 
 const CartItem = (props) => {
-  
+
   return (
     <li className={classes.item}>
       <header>
@@ -17,7 +17,7 @@ const CartItem = (props) => {
         </div>
         <div className={classes.actions}>
           <button>-</button>
-          <button>+</button>
+          <button type='button' onClick={props.onAdd}>+</button>
         </div>
       </div>
     </li>
