@@ -1,30 +1,36 @@
 
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
-
 import useInput from '../../hook/useInput';
+
+
 const ProductItem = (props) => {
   // const { title, price, description } = props;
 
-  const {value: title, valueChangeHandler: titleChangeHandler, reset: resetTitle} = useInput(value => value.trim() !== "")
+  const {value: title, valueChangeHandler: titleChangeHandler, reset: resetTitle, isValid: titleIsvalid} = useInput(value => value.trim() !== "")
 
-  const {value: quantity, valueChangeHandler: quantityChangeHandler, reset: resetQuantity} = useInput(value => value > 0)
+  const {value: quantity, valueChangeHandler: quantityChangeHandler, reset: resetQuantity, isValid:quantityIsvalid} = useInput(value => value > 0)
 
-  const {value: price, valueChangeHandler: priceChangeHandler, reset: resetPrice} = useInput(value => value > 0)
+  const {value: price, valueChangeHandler: priceChangeHandler, reset: resetPrice, isValid: priceIsvalid} = useInput(value => value > 0)
 
   
+let formIsvalid = false
 
-
+if (titleIsvalid && quantityIsvalid && priceIsvalid ) {
+  formIsvalid = true
+}
+ 
 
   const submitHandler = (event) => {
     event.preventDefault()
     const data = {
+      id: Math.random().toString(),
       title: title,
       quantity: +quantity,
       price: +price,
       total: quantity * price
     }
-
+    console.log(data)
     props.onAddCart(data)
     resetPrice()
     resetQuantity()
@@ -45,8 +51,9 @@ const ProductItem = (props) => {
           <label>Price</label>
           <input type='number' onChange={priceChangeHandler} value={price}></input>
 
-          <button>Add to cart</button>
+          <button disabled={!formIsvalid}>Add to cart</button>
         </form>
+
         {/* <header>
           <h3>{title}</h3>
           <div className={classes.price}>${price.toFixed(2)}</div>
