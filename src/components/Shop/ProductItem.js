@@ -27,8 +27,7 @@ if (titleIsvalid && quantityIsvalid && priceIsvalid ) {
       id: Math.random().toString(),
       title: title,
       quantity: +quantity,
-      price: +price,
-      total: quantity * price
+      price: +price
     }
     console.log(data)
     props.onAddCart(data)
