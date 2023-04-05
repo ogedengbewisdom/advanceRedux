@@ -8,7 +8,6 @@ import { cartSliceActions } from '../../store/cart';
 const Cart = (props) => {
 
   const item = useSelector(state => state.cartItem)
-  // const item = [{ title: 'Test Item', quantity: 3, total: 18, price: 6 }]
 
   const dispatch = useDispatch()
 
@@ -20,6 +19,7 @@ const Cart = (props) => {
     }))
   }
 
+
   const removeCartHandler = (id) => {
     dispatch(cartSliceActions.removeFromCart(id))
   }
@@ -28,7 +28,7 @@ const Cart = (props) => {
     <Card className={classes.cart}>
       <h2>Your Shopping Cart</h2>
       <ul>
-        {/* <CartItem item={dummy}/> */}
+
         {item.map(cart => 
           <CartItem
             key={cart.id}
@@ -38,7 +38,7 @@ const Cart = (props) => {
             total={cart.total} 
             price={cart.price} 
             onAdd={addCartHandler.bind(null, cart)}
-            onRemove={removeCartHandler.bind(null, cart.id)}
+            onRemove={removeCartHandler.bind(null, cart)}
             />
           )}
       </ul>
