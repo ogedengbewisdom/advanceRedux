@@ -19,7 +19,6 @@ let formIsvalid = false
 if (titleIsvalid && quantityIsvalid && priceIsvalid ) {
   formIsvalid = true
 }
- 
 
   const submitHandler = (event) => {
     event.preventDefault()
