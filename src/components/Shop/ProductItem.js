@@ -37,30 +37,30 @@ if (titleIsvalid && quantityIsvalid && priceIsvalid ) {
 
   return (
     <li className={classes.item}>
+       <div className={classes.formControls}>
       <Card>
 
         <form onSubmit={submitHandler}>
-          <label>Title</label>
-          <input type='text' onChange={titleChangeHandler} value={title}></input>
-
-          <label>Quantity</label>
-          <input type='number' onChange={quantityChangeHandler} value={quantity}></input>
-
-          <label>Price</label>
-          <input type='number' onChange={priceChangeHandler} value={price}></input>
-
+         
+            <div className={classes.formControl}>
+              <label>Title</label>
+              <input type='text' onChange={titleChangeHandler} value={title}></input>
+            </div>
+            <div className={classes.formControl}>
+              <label>Quantity</label>
+              <input type='number' onChange={quantityChangeHandler} value={quantity}></input>
+            </div>
+            <div className={classes.formControl}>
+              <label>Price</label>
+              <input type='number' onChange={priceChangeHandler} value={price}></input>
+            </div>
+         
+         <div className={classes.buton}>
           <button disabled={!formIsvalid}>Add to cart</button>
+          </div>
         </form>
-
-        {/* <header>
-          <h3>{title}</h3>
-          <div className={classes.price}>${price.toFixed(2)}</div>
-        </header>
-        <p>{description}</p>
-        <div className={classes.actions}>
-          <button  onClick={addToCartHandler}>Add to Cart</button>
-        </div> */}
       </Card>
+      </div>
     </li>
   );
 };
