@@ -40,15 +40,15 @@ const cartSlice = createSlice({
         removeFromCart(state, action) {
             const existingCartIndex = state.cartItem.findIndex(data => data.id === action.payload.id)
             const existingCart = state.cartItem[existingCartIndex]
-            const updatedTotalAmount = state.totalAmout - existingCart.action.price
-
+            const updatedTotalAmount = state.totalAmout - existingCart.price 
+        
             let updatedCarts;
-            if ( existingCart.quantity === 1) {
-                updatedCarts = state.cartItem.filter(data => data.id !== action.id)
+            if (existingCart && existingCart.quantity === 1) {
+                updatedCarts = state.cartItem.filter(data => data.id !== action.payload.id)
             } else {
                 const updatedCart = {
                     ...existingCart,
-                    quantity: existingCart.quantity - 1
+                    quantity:existingCart.quantity - 1 
                 }
                 updatedCarts = [...state.cartItem]
                 updatedCarts[existingCartIndex] = updatedCart
