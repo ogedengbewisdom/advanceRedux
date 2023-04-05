@@ -20,6 +20,10 @@ const Cart = (props) => {
     }))
   }
 
+  const removeCartHandler = (id) => {
+    dispatch(cartSliceActions.removeFromCart(id))
+  }
+  const total = useSelector(state => state.totalAmout)
   return (
     <Card className={classes.cart}>
       <h2>Your Shopping Cart</h2>
@@ -34,10 +38,14 @@ const Cart = (props) => {
             total={cart.total} 
             price={cart.price} 
             onAdd={addCartHandler.bind(null, cart)}
-            
+            onRemove={removeCartHandler.bind(null, cart.id)}
             />
           )}
       </ul>
+      <div className={classes.total}>
+        <h1>Total : </h1>
+        <h1>${total.toFixed(2)}</h1>
+      </div>
     </Card>
   );
 };
