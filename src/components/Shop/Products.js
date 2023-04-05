@@ -13,11 +13,7 @@ const Products = (props) => {
     <section className={classes.products}>
       <h2>Buy your favorite products</h2>
       <ul>
-        <ProductItem onAddCart={addToCartHandler}
-          // title='Test'
-          // price={6}
-          // description='This is a first product - amazing!'
-        />
+        <ProductItem onAddCart={addToCartHandler} />
       </ul>
     </section>
   );
